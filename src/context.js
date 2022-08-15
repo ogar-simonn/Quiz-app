@@ -8,7 +8,6 @@ const table = {
 };
 const API_ENDPOINT = 'https://opentdb.com/api.php?';
 
-const url = '';
 let tempUrl =
   'https://opentdb.com/api.php?amount=10&category=21&difficulty=medium';
 
@@ -29,7 +28,7 @@ const AppProvider = ({ children }) => {
       setQuiz((oldVal => {
         return {
           ...oldVal,
-          amount: +e.taget.value,
+          amount: +e.target.value,
         }
       }))
     } else if(e.target.id === "category") {
@@ -50,7 +49,9 @@ const AppProvider = ({ children }) => {
   }
   const handleSubmit = (e) => {
    e.preventDefault();
-   console.log(quiz);
+   const {amount, category, difficulty } = quiz;
+   tempUrl = `${API_ENDPOINT}amount=${amount}&difficulty=${difficulty}&category=${table[category]}&type=multiple`;
+   fetchQuestions(tempUrl);
   }
   const fetchQuestions = async (url) => {
     setLoading(true);
@@ -63,6 +64,7 @@ const AppProvider = ({ children }) => {
         setQuestions(data);
         setError(false);
       } else {
+        setWaiting(true);
         setError(true);
       }
     } else {
@@ -95,7 +97,7 @@ const AppProvider = ({ children }) => {
     setCorrect(0);
     setIsModalOpen(false);
   };
-  
+
   return (
     <AppContext.Provider
       value={{

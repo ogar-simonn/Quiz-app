@@ -6,8 +6,16 @@ import Loading from './loading';
 import Modal from './Modal';
 
 export default function App() {
-  const { waiting, loading, questions, index, error, correct, nextQuestion, checkAnswer  } =
-    useGlobalContext();
+  const {
+    waiting,
+    loading,
+    questions,
+    index,
+    error,
+    correct,
+    nextQuestion,
+    checkAnswer,
+  } = useGlobalContext();
   if (waiting) {
     return <SetupForm />;
   }
@@ -16,8 +24,14 @@ export default function App() {
     return <Loading />;
   }
   const { question, incorrect_answers, correct_answer } = questions[index];
-  const answers = [...incorrect_answers, correct_answer];
-
+  const answers = [...incorrect_answers];
+const randomNumber = Math.floor(Math.random() * 4);
+if(randomNumber === 3) {
+  answers.push(correct_answer)
+} else {
+  answers.push(answers[randomNumber])
+  answers[randomNumber] = correct_answer
+}
   return (
     <main>
       <section className="quiz">
@@ -40,7 +54,9 @@ export default function App() {
             })}
           </div>
         </article>
-        <button className="next-question" onClick={nextQuestion}>Next question </button>
+        <button className="next-question" onClick={nextQuestion}>
+          Next question{' '}
+        </button>
       </section>
     </main>
   );

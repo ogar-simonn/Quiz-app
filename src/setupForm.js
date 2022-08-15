@@ -7,7 +7,7 @@ const SetupForm = () => {
       <form className="form-setup" onSubmit={handleSubmit}>
         <h2>Setup Quiz</h2>
         <div className="form-control">
-          <label htmlFor="amount">nimber of questions</label>
+          <label htmlFor="amount">number of questions</label>
           <input
             type="number"
             name="amount"
@@ -29,15 +29,18 @@ const SetupForm = () => {
             value={quiz.category}
           >
             <option value="sports">sports</option>
-            <option value="history">histor</option>
+            <option value="history">history</option>
             <option value="politics">politics</option>
           </select>
         </div>
         <div className="form-control">
-          <label htmlFor="difficulty">
-            Difficulty 
-          </label>
-          <select name="difficulty" id="difficulty" onChange={handleChange} value={quiz.difficulty}>
+          <label htmlFor="difficulty">Difficulty</label>
+          <select
+            name="difficulty"
+            id="difficulty"
+            onChange={handleChange}
+            value={quiz.difficulty}
+          >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Difficult</option>
