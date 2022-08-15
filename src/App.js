@@ -1,22 +1,22 @@
 import React from "react";
 import "./index.css";
 import {useGlobalContext} from "./context" 
+import SetupForm from "./setupForm"
+import Loading from "./loading";
 
 
 export default function App() {
-  const value = useGlobalContext()
-  console.log(value);
+  const {waiting, loading, questions, index, error } = useGlobalContext();
+  if(waiting) {
+    return <SetupForm/>
+  }
+  if(loading) {
+    return <Loading/>
+  }
+
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-      <p>Start editing to see some mag
-        
-        
-
-        
-        
-        
-        ic happen :)</p>
+      <h3>Quiz app</h3>
     </div>
   );
 }
