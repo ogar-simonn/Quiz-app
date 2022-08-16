@@ -40,6 +40,7 @@ const SetupForm = () => {
             id="difficulty"
             onChange={handleChange}
             value={quiz.difficulty}
+            className="form-input"
           >
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
